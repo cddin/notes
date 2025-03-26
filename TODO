@@ -9,11 +9,14 @@ React as the frontend library
 Typescript for type safety
 State Management Library (e.g., Redux , MobX, Recoil)
 Jest and React-Testing Library 
-
+==================================
 Area of Focus
-React Proficiency – Structure your components efficiently. Use hooks or any modern React features you find appropriate. 
+React Proficiency – Structure your components efficiently. Use hooks or any modern React features you find appropriate.
+
 Clean Code – Write production-grade code and ensure that you write clean and maintainable code, bearing in mind principle like DRY and KISS
+
 State Management – Choose an appropriate state management library and demonstrate how you would manage state across multiple components.
+
 UI/UX – Showcase your front-end skills and feel free to dazzle us.
 Testing – Ensure that the application is well tested.
 
@@ -36,6 +39,9 @@ screen:
         - add
         - update
         - delete
+
+api call use hook - split UI with fetch logic
+state management - 
 
 text editor:
 https://www.npmjs.com/package/react-simple-wysiwyg

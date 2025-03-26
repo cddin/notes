@@ -92,7 +92,7 @@ export default function Home() {
 
       <Card>
         <h2>Current Theme: {theme}</h2>
-        <p>You can switch between light and dark themes using the button below.</p>
+        <p>Test change theme</p>
         <ThemeSwitchButton onClick={toggleTheme}>
           Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
         </ThemeSwitchButton>
