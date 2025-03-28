@@ -8,13 +8,12 @@ export default function Notes() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [editingNote, setEditingNote] = useState<Note | null>(null);
-  // const { data: notes, loading, fetchData } = useFetch<Note[]>('/api/notes');
   const { data: notes, get:fetchData, create:createNote, update:updateNote, remove:removeNote, loading, error } = useApi('/api/notes');
 
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
