@@ -12,6 +12,7 @@ export async function GET(
     const note = await getNoteById(params.id);
     return NextResponse.json(note);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: 'Failed to fetch note' },
       { status: 500 }
