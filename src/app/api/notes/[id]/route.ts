@@ -3,9 +3,7 @@ import { connectDB } from '@/lib/mongodb';
 import { getNoteById, updateNote, deleteNote } from '@/lib/notes';
 
 // GET /api/notes/[id]
-type Props = {
-  params: { id: string }
-}
+
 export async function GET(
   request: Request,
   context: { params: { id: string } }
