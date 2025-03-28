@@ -2,76 +2,34 @@
 
 import { useState, useEffect } from 'react';
 import { Note } from '@/types/note';
-import { useFetch } from "../hooks/notes/useFetch";
+import { useApi } from '@/hooks/useApi';
 
 export default function Notes() {
-  // const [notes, setNotes] = useState<Note[]>([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [editingNote, setEditingNote] = useState<Note | null>(null);
-  const [error, setError] = useState('');
-  const { data: notes, loading, fetchData } = useFetch<Note[]>('/api/notes');
+  // const { data: notes, loading, fetchData } = useFetch<Note[]>('/api/notes');
+  const { data: notes, get:fetchData, create:createNote, update:updateNote, remove:removeNote, loading, error } = useApi('/api/notes');
 
-  // Load notes on component mount
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  // TODO: create hook for api call
-
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log('handleSubmit');
     e.preventDefault();
-    setError('');
-
-    try {
       if (editingNote) {
-        // Update existing note
-        const response = await fetch(`/api/notes/${editingNote._id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ title, content }),
-        });
-
-        if (!response.ok) throw new Error('Failed to update note');
+        updateNote(editingNote._id, { title, content });
       } else {
-        // Create new note
-        const response = await fetch('/api/notes', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ title, content }),
-        });
-
-        if (!response.ok) throw new Error('Failed to create note');
+        createNote({ title, content });
       }
-
-      // Reset form and refresh notes
-      setTitle('');
-      setContent('');
-      setEditingNote(null);
-      fetchData();
-    } catch (err) {
-      setError(editingNote ? `Failed to update note ${err}` : 'Failed to create note');
-    }
+      resetForm();
+    
   };
 
   // Handle note deletion
   const handleDelete = async (id: string) => {
-    try {
-      const response = await fetch(`/api/notes/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) throw new Error('Failed to delete note');
-      fetchData();
-    } catch (err) {
-      setError(`Failed to delete note: ${err}`);
-    }
+    removeNote(id);
   };
 
   // Handle edit button click
@@ -79,6 +37,12 @@ export default function Notes() {
     setEditingNote(note);
     setTitle(note.title);
     setContent(note.content);
+  };
+
+  const resetForm = () => {
+    setTitle('');
+    setContent('');
+    setEditingNote(null);
   };
 
 
