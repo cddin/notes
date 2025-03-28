@@ -3,9 +3,12 @@ import { connectDB } from '@/lib/mongodb';
 import { getNoteById, updateNote, deleteNote } from '@/lib/notes';
 
 // GET /api/notes/[id]
+type Props = {
+  params: { id: string }
+}
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: Props
 ) {
   try {
     await connectDB();
@@ -23,7 +26,7 @@ export async function GET(
 // PUT /api/notes/[id]
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: Props
 ) {
   try {
     const body = await request.json();
@@ -51,7 +54,7 @@ export async function PUT(
 // DELETE /api/notes/[id]
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: Props
 ) {
   try {
     await connectDB();
