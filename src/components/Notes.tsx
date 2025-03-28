@@ -96,7 +96,7 @@ export default function Notes() {
 
       {/* Notes list */}
       <div className="grid gap-4">
-        {notes && notes.map((note) => (
+        {notes && notes.map((note:Note) => (
           <div
             key={note._id}
             className="border rounded p-4 bg-white shadow-sm"
