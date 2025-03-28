@@ -8,11 +8,13 @@ type Props = {
 }
 export async function GET(
   request: Request,
-  { params }: Props
+  context: { params: { id: string } }
 ) {
+
+  const { id } = context.params;
   try {
     await connectDB();
-    const note = await getNoteById(params.id);
+    const note = await getNoteById(id);
     return NextResponse.json(note);
   } catch (error) {
     console.log(error);
@@ -26,8 +28,9 @@ export async function GET(
 // PUT /api/notes/[id]
 export async function PUT(
   request: Request,
-  { params }: Props
+  context: { params: { id: string } }
 ) {
+  const { id } = context.params;
   try {
     const body = await request.json();
     const { title, content } = body;
@@ -40,7 +43,7 @@ export async function PUT(
     }
 
     await connectDB();
-    const note = await updateNote(params.id, title, content);
+    const note = await updateNote(id, title, content);
     return NextResponse.json(note);
   } catch (error) {
     console.log(error);
@@ -54,11 +57,12 @@ export async function PUT(
 // DELETE /api/notes/[id]
 export async function DELETE(
   request: Request,
-  { params }: Props
+  context: { params: { id: string } }
 ) {
+  const { id } = context.params;
   try {
     await connectDB();
-    await deleteNote(params.id);
+    await deleteNote(id);
     return NextResponse.json({ message: 'Note deleted successfully' });
   } catch (error) {
     console.log(error);
