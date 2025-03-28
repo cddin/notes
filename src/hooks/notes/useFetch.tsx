@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useFetch<T = any>(url: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -11,6 +11,7 @@ export function useFetch<T = any>(url: string) {
       if (!res.ok) throw new Error(`Error: ${res.status}`);
       const result = await res.json();
         setData(result);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
        setError(err);
     } finally {
