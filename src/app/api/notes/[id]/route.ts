@@ -39,6 +39,7 @@ export async function PUT(
     const note = await updateNote(params.id, title, content);
     return NextResponse.json(note);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: 'Failed to update note' },
       { status: 500 }
@@ -56,6 +57,7 @@ export async function DELETE(
     await deleteNote(params.id);
     return NextResponse.json({ message: 'Note deleted successfully' });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: 'Failed to delete note' },
       { status: 500 }

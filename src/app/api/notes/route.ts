@@ -9,6 +9,7 @@ export async function GET() {
     const notes = await getAllNotes();
     return NextResponse.json(notes);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: 'Failed to fetch notes' },
       { status: 500 }
@@ -33,6 +34,7 @@ export async function POST(request: Request) {
     const note = await createNote(title, content);
     return NextResponse.json(note, { status: 201 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: 'Failed to create note' },
       { status: 500 }

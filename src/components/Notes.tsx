@@ -56,7 +56,7 @@ export default function Notes() {
       setEditingNote(null);
       fetchData();
     } catch (err) {
-      setError(editingNote ? 'Failed to update note' : 'Failed to create note');
+      setError(editingNote ? `Failed to update note ${err}` : 'Failed to create note');
     }
   };
 
@@ -70,7 +70,7 @@ export default function Notes() {
       if (!response.ok) throw new Error('Failed to delete note');
       fetchData();
     } catch (err) {
-      setError('Failed to delete note');
+      setError(`Failed to delete note: ${err}`);
     }
   };
 
