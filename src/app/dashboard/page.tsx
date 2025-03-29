@@ -4,14 +4,17 @@ import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
 import { ActionContainer, BackButton, Container, DashboardGrid, Header, Title } from './styles';
 import NoteCard from '@/components/NoteCard';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setNotes, addNote, deleteNote, setLoading, setError } from '@/store/slices/notesSlice';
+import { useAppSelector } from '@/store/hooks';
 import { Note } from '@/types/note';
-
+import { useApiNotes } from '@/hooks/useApiNotes';
 export default function DashboardPage() {
-  const dispatch = useAppDispatch();
-  const { notes, loading } = useAppSelector((state: { notes: { notes: Note[]; loading: boolean } }) => state.notes);
+  const { notes, loading, error } = useAppSelector((state: { notes: { notes: Note[], loading: boolean, error: string | null } }) => ({
+    notes: state.notes.notes,
+    loading: state.notes.loading, 
+    error: state.notes.error || ''
+  }));
   const [isMounted, setIsMounted] = useState(false);
+  const { get, create, remove } = useApiNotes();
 
   useEffect(() => {
     setIsMounted(true);
@@ -22,53 +25,23 @@ export default function DashboardPage() {
   }, []);
 
   const fetchNotes = async () => {
-    try {
-      dispatch(setLoading(true));
-      const response = await fetch('/api/notes');
-      if (!response.ok) throw new Error('Failed to fetch notes');
-      const data = await response.json();
-      dispatch(setNotes(data));
-    } catch (error) {
-      dispatch(setError(error instanceof Error ? error.message : 'Failed to fetch notes'));
-    }
+    get();
   };
 
   const onAddHandler = async () => {
-    try {
-      dispatch(setLoading(true));
-      const response = await fetch('/api/notes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: "hardcoded title",
-          content: "hardcoded content"
-        }),
-      });
-      if (!response.ok) throw new Error('Failed to create note');
-      const newNote = await response.json();
-      dispatch(addNote(newNote));
-    } catch (error) {
-      dispatch(setError(error instanceof Error ? error.message : 'Failed to create note'));
-    }
+    create({
+      title: "hardcoded title",
+      content: "hardcoded content" + Math.random()
+    });
+ 
   };
 
   const onDeleteHandler = async (id: string) => {
-    try {
-      dispatch(setLoading(true));
-      const response = await fetch(`/api/notes/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) throw new Error('Failed to delete note');
-      dispatch(deleteNote(id));
-    } catch (error) {
-      dispatch(setError(error instanceof Error ? error.message : 'Failed to delete note'));
-    }
+    remove(id);
   };
 
   if (!isMounted) return null;
-  
+
   return (
     <Container>
       <Header>
@@ -80,6 +53,7 @@ export default function DashboardPage() {
       <ActionContainer>
         <Button onClick={onAddHandler}>Add Note</Button>
         <div>{loading ? "Loading..." : ""}</div>
+        <div>{error ? error : ""}</div>
       </ActionContainer>
       
       <DashboardGrid>

@@ -22,24 +22,6 @@ const notesSlice = createSlice({
       state.loading = false;
       state.error = null;
     },
-    addNote: (state, action: PayloadAction<Note>) => {
-      state.notes.push(action.payload);
-      state.loading = false;
-      state.error = null;
-    },
-    updateNote: (state, action: PayloadAction<Note>) => {
-      const index = state.notes.findIndex(note => note._id === action.payload._id);
-      if (index !== -1) {
-        state.notes[index] = action.payload;
-      }
-      state.loading = false;
-      state.error = null;
-    },
-    deleteNote: (state, action: PayloadAction<string>) => {
-      state.notes = state.notes.filter(note => note._id !== action.payload);
-      state.loading = false;
-      state.error = null;
-    },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
@@ -50,5 +32,6 @@ const notesSlice = createSlice({
   },
 });
 
-export const { setNotes, addNote, updateNote, deleteNote, setLoading, setError } = notesSlice.actions;
+// export const { setNotes, addNote, updateNote, deleteNote, setLoading, setError } = notesSlice.actions;
+export const { setNotes, setLoading, setError } = notesSlice.actions;
 export default notesSlice.reducer; 
