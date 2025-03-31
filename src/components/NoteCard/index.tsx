@@ -26,12 +26,12 @@ import { Note } from "@/types/note";
   line-height: 1.5;
 `;
 
-const NoteCard = ({note, onDeleteHandler}:{note:Note, onDeleteHandler:(id:string)=>void}) => {
+const NoteCard = ({note, onDeleteHandler, onClickHandler}:{note:Note, onDeleteHandler:(id:string)=>void, onClickHandler:()=>void}) => {
   return (
-    <Card key={note._id}>
+    <Card key={note._id} onClick={onClickHandler}>
             <CardTitle>{note.title}</CardTitle>
             <CardContent>{note.content}</CardContent>
-            <Button onClick={()=>{onDeleteHandler(note._id)}}>x</Button>
+            <Button onClick={(e)=>{e.stopPropagation(); onDeleteHandler(note._id)}}>x</Button>
           </Card>
   );
 };
