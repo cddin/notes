@@ -24,6 +24,11 @@ import { Note } from "@/types/note";
  const CardContent = styled.p`
   color: #4b5563;
   line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;    
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const NoteCard = ({note, onDeleteHandler, onClickHandler}:{note:Note, onDeleteHandler:(id:string)=>void, onClickHandler:()=>void}) => {

@@ -64,10 +64,19 @@ export const StyledLink = styled(Link)`
 
 export const DashboardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(298px, 1fr));
   gap: 2rem;
-  max-width: 4xl;
   margin: 0 auto;
+  max-width: 1440px;
+
+  grid-template-columns: repeat(1, 1fr); 
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr); 
+}
+
+@media (min-width: 1440px) {
+    grid-template-columns: repeat(5, 1fr); 
+}
 `;
 
 export const ActionContainer = styled.div`

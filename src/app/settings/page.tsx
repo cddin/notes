@@ -27,7 +27,6 @@ export default function NotesPage() {
           ← Back to Home
         </BackButton>
       </Header>
-      hello
       <Button onClick={toggleTheme}>
           Change theme
         </Button>
