@@ -6,13 +6,15 @@ import { ActionContainer, Container, Header, Title } from './styles';
 // import NoteCard from '@/components/NoteCard';
 // import { useAppSelector } from '@/store/hooks';
 // import { Note } from '@/types/note';
-import { useAppSelector } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useApiNotes } from '@/hooks/useApiNotes';
 import { useRouter } from 'next/navigation';
 import NoteForm from '@/components/NoteForm';
 import { Note } from '@/types/note';
 import LinkButton from '@/components/LinkButton';
+import { setEditNote } from '@/store/slices/notesSlice';
 export default function EditPage() {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const { update} = useApiNotes();
@@ -22,6 +24,10 @@ export default function EditPage() {
 
   useEffect(() => {
     setIsMounted(true);
+    const storedNote = localStorage.getItem('editNote');
+    if (storedNote) {
+      dispatch(setEditNote(JSON.parse(storedNote)));
+    }
   }, []);
 
   const onAddHandler = async (data: { title: string; content: string }) => {

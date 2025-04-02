@@ -3,18 +3,27 @@
 // import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
 import { ActionContainer, Container, Header, TextArea, Title } from './styles';
-import { useAppSelector } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { setEditNote } from '@/store/slices/notesSlice';
 import { Note } from '@/types/note';
 import LinkButton from '@/components/LinkButton';
 import HtmlClamp from '@/components/HtmlRenderer';
 export default function ViewPage() {
+  const dispatch = useAppDispatch();
   const [isMounted, setIsMounted] = useState(false);
+
   const { editNote } = useAppSelector((state: { notes: { editNote: Note | null } }) => ({
     editNote: state.notes.editNote,
   }));
 
+
+
   useEffect(() => {
     setIsMounted(true);
+    const storedNote = localStorage.getItem('editNote');
+    if (storedNote) {
+      dispatch(setEditNote(JSON.parse(storedNote)));
+    }
   }, []);
 
 
