@@ -47,7 +47,7 @@ export default function Home() {
     <Container>
       <Title>Welcome to Notes App</Title>
       <Description>
-        A simple and elegant way to manage your notes. Choose an option below to get started.
+        Manage your notes here.
       </Description>
       <ButtonGroup>
         <LinkButton href="/settings">

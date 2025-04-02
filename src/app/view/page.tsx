@@ -2,7 +2,7 @@
 
 // import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
-import { ActionContainer, Container, Header, TextArea, Title } from './styles';
+import { ActionContainer, Container, Header, TextArea, Title, SimpleCard } from './styles';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setEditNote } from '@/store/slices/notesSlice';
 import { Note } from '@/types/note';
@@ -32,6 +32,7 @@ export default function ViewPage() {
 
   return (
     <Container>
+      
       <Header>
         <Title>Edit</Title>
         <LinkButton href="/dashboard">
@@ -41,12 +42,14 @@ export default function ViewPage() {
       <ActionContainer>
         <LinkButton href="/edit">Edit</LinkButton>
       </ActionContainer>
+      <SimpleCard>
       {editNote && (
         <TextArea>
           <h1>{editNote.title}</h1>
           <HtmlClamp html={editNote.content} lines={100} />
         </TextArea>
       )}
+      </SimpleCard>
     </Container>
   );
 } 

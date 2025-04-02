@@ -4,7 +4,6 @@ import HtmlClamp from "../HtmlRenderer";
 import DeleteButton from "../DeleteButton";
 
  const Card = styled.div`
-  background: white;
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -19,12 +18,15 @@ import DeleteButton from "../DeleteButton";
   gap: 1rem;
 
   overflow: hidden;
+  background:${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
  const CardTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937;
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 1rem;
 `;
 

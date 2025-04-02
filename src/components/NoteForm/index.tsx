@@ -11,10 +11,12 @@ const Form = styled.form`
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
-  background: white;
+  
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  color: black;
+  background:${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const FormGroup = styled.div`
@@ -26,7 +28,7 @@ const FormGroup = styled.div`
 const Label = styled.label`
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Input = styled.input`
@@ -75,7 +77,6 @@ interface NoteFormProps {
 export default function NoteForm({ onSubmit, initialData, isLoading = false }: NoteFormProps) {
   const [title, setTitle] = useState(initialData?.title || '');
   const [content, setContent] = useState(initialData?.content || '');
-  // const [html, setHtml] = useState('my <b>HTML</b>');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
