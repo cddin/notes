@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { styled } from "styled-components";
 
 export const Container = styled.main`
@@ -21,23 +20,6 @@ export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.textSecondary};
-`;
-
-export const BackButton = styled(Link)`
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    background-color: #2563eb;
-    transform: translateY(-1px);
-  }
 `;
 
 export const DashboardGrid = styled.div`

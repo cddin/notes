@@ -2,13 +2,14 @@
 
 // import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
-import { ActionContainer, BackButton, Container, Header, Title } from './styles';
+import { ActionContainer, Container, Header, Title } from './styles';
 // import NoteCard from '@/components/NoteCard';
 // import { useAppSelector } from '@/store/hooks';
 // import { Note } from '@/types/note';
 import { useApiNotes } from '@/hooks/useApiNotes';
 import { useRouter } from 'next/navigation';
 import NoteForm from '@/components/NoteForm';
+import LinkButton from '@/components/LinkButton';
 export default function CreateNewPage() {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
@@ -33,9 +34,9 @@ export default function CreateNewPage() {
     <Container>
       <Header>
         <Title>Create New Notes</Title>
-        <BackButton href="/dashboard">
+        <LinkButton href="/dashboard">
           ← 
-        </BackButton>
+        </LinkButton>
       </Header>
       <ActionContainer>
       </ActionContainer>

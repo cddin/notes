@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { styled } from "styled-components";
 
 export const Container = styled.main`
@@ -21,45 +20,6 @@ export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.textSecondary};
-`;
-
-export const BackButton = styled(Link)`
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    background-color: #2563eb;
-    transform: translateY(-1px);
-  }
-`;
-
-export const StyledLink = styled(Link)`
-  background-color: #3b82f6;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 0.75rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-  &:hover {
-    background-color: #2563eb;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
 `;
 
 export const DashboardGrid = styled.div`

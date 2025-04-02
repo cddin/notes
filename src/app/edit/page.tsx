@@ -2,7 +2,7 @@
 
 // import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
-import { ActionContainer, BackButton, Container, Header, Title } from './styles';
+import { ActionContainer, Container, Header, Title } from './styles';
 // import NoteCard from '@/components/NoteCard';
 // import { useAppSelector } from '@/store/hooks';
 // import { Note } from '@/types/note';
@@ -11,6 +11,7 @@ import { useApiNotes } from '@/hooks/useApiNotes';
 import { useRouter } from 'next/navigation';
 import NoteForm from '@/components/NoteForm';
 import { Note } from '@/types/note';
+import LinkButton from '@/components/LinkButton';
 export default function EditPage() {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
@@ -38,9 +39,9 @@ export default function EditPage() {
     <Container>
       <Header>
         <Title>Edit</Title>
-        <BackButton href="/dashboard">
+        <LinkButton href="/dashboard">
           ← 
-        </BackButton>
+        </LinkButton>
       </Header>
       <ActionContainer>
       </ActionContainer>

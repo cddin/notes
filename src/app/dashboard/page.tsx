@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ActionContainer, BackButton, Container, DashboardGrid, Header, Title, StyledLink } from './styles';
+import { ActionContainer, Container, DashboardGrid, Header, Title } from './styles';
 import NoteCard from '@/components/NoteCard';
 import { useAppSelector } from '@/store/hooks';
 import { Note } from '@/types/note';
@@ -9,6 +9,7 @@ import { useApiNotes } from '@/hooks/useApiNotes';
 import { setEditNote } from '@/store/slices/notesSlice';
 import { useAppDispatch } from '@/store/hooks';
 import { useRouter } from 'next/navigation';
+import LinkButton from '@/components/LinkButton';
 export default function EditPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -47,12 +48,12 @@ export default function EditPage() {
     <Container>
       <Header>
         <Title>Dashboard</Title>
-        <BackButton href="/">
+        <LinkButton href="/">
           ← 
-        </BackButton>
+        </LinkButton>
       </Header>
       <ActionContainer>
-        <StyledLink href="/new">Add Note</StyledLink>
+        <LinkButton href="/new">Add Note</LinkButton>
         <div>{loading ? "Loading..." : ""}</div>
         <div>{error ? error : ""}</div>
       </ActionContainer>

@@ -14,6 +14,7 @@ const ClampContainer = styled.div<{ lines: number }>`
   white-space: normal;
   width: 100%;
   flex:1;
+  color:black;
 
   -webkit-line-clamp: ${(props) => props.lines};
 `;
