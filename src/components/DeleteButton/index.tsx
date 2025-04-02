@@ -8,9 +8,9 @@ type ButtonProps = {
 const Container = styled.button`
   background-color: red;
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
