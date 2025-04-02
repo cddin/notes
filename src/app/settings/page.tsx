@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
-import { BackButton, Button, Container, Header } from './styles';
+import {  Button, Container, Header } from './styles';
 import LinkButton from '@/components/LinkButton';
 // background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
 
