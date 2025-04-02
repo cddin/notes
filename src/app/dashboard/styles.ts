@@ -83,4 +83,6 @@ export const ActionContainer = styled.div`
   margin-top: 2rem;
   margin-bottom: 2rem;
   display: flex;
+  gap: 1rem;
+  align-items: center;
 `;
