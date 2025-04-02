@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import Button from "../Button";
 import { Note } from "@/types/note";
 import HtmlClamp from "../HtmlRenderer";
 import DeleteButton from "../DeleteButton";
