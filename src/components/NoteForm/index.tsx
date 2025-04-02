@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import styled from 'styled-components';
+import Editor from 'react-simple-wysiwyg';
 
 const Form = styled.form`
   display: flex;
@@ -32,21 +33,6 @@ const Input = styled.input`
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   font-size: 1rem;
-  transition: border-color 0.2s;
-
-  &:focus {
-    outline: none;
-    border-color: #3b82f6;
-  }
-`;
-
-const TextArea = styled.textarea`
-  padding: 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  min-height: 150px;
-  resize: vertical;
   transition: border-color 0.2s;
 
   &:focus {
@@ -88,6 +74,7 @@ interface NoteFormProps {
 export default function NoteForm({ onSubmit, initialData, isLoading = false }: NoteFormProps) {
   const [title, setTitle] = useState(initialData?.title || '');
   const [content, setContent] = useState(initialData?.content || '');
+  // const [html, setHtml] = useState('my <b>HTML</b>');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -109,12 +96,9 @@ export default function NoteForm({ onSubmit, initialData, isLoading = false }: N
       </FormGroup>
       <FormGroup>
         <Label htmlFor="content">Content</Label>
-        <TextArea
-          id="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-          placeholder="Enter note content"
+        <Editor 
+          value={content} 
+          onChange={(event) => setContent(event.target.value)} 
         />
       </FormGroup>
       <SubmitButton type="submit" disabled={isLoading}>

@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import Button from "../Button";
 import { Note } from "@/types/note";
+import HtmlClamp from "../HtmlRenderer";
 
  const Card = styled.div`
   background: white;
@@ -12,6 +13,12 @@ import { Note } from "@/types/note";
   &:hover {
     transform: translateY(-4px);
   }
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  overflow: hidden;
 `;
 
  const CardTitle = styled.h2`
@@ -21,21 +28,12 @@ import { Note } from "@/types/note";
   margin-bottom: 1rem;
 `;
 
- const CardContent = styled.p`
-  color: #4b5563;
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;    
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
 const NoteCard = ({note, onDeleteHandler, onClickHandler}:{note:Note, onDeleteHandler:(id:string)=>void, onClickHandler:()=>void}) => {
   return (
     <Card key={note._id} onClick={onClickHandler}>
             <CardTitle>{note.title}</CardTitle>
-            <CardContent>{note.content}</CardContent>
+
+              <HtmlClamp html={note.content} />
             <Button onClick={(e)=>{e.stopPropagation(); onDeleteHandler(note._id)}}>x</Button>
           </Card>
   );
