@@ -39,7 +39,7 @@ export default function EditPage() {
 
   const onEditHandler = async (note: Note) => {
     dispatch(setEditNote(note));
-    router.push('/edit');
+    router.push('/view');
   };
 
   if (!isMounted) return null;
