@@ -35,3 +35,10 @@ export const ActionContainer = styled.div`
   margin-bottom: 2rem;
   display: flex;
 `;
+
+export const TextArea = styled.main`
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  padding: 0;
+`;

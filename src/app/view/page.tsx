@@ -2,7 +2,7 @@
 
 // import Button from '@/components/Button';
 import { useEffect, useState } from 'react';
-import { ActionContainer, Container, Header, Title } from './styles';
+import { ActionContainer, Container, Header, TextArea, Title } from './styles';
 import { useAppSelector } from '@/store/hooks';
 import { Note } from '@/types/note';
 import LinkButton from '@/components/LinkButton';
@@ -33,10 +33,10 @@ export default function ViewPage() {
         <LinkButton href="/edit">Edit</LinkButton>
       </ActionContainer>
       {editNote && (
-        <div>
+        <TextArea>
           <h1>{editNote.title}</h1>
           <HtmlClamp html={editNote.content} lines={100} />
-        </div>
+        </TextArea>
       )}
     </Container>
   );
