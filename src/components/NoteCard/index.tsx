@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import Button from "../Button";
 import { Note } from "@/types/note";
 import HtmlClamp from "../HtmlRenderer";
+import DeleteButton from "../DeleteButton";
 
  const Card = styled.div`
   background: white;
@@ -34,7 +35,7 @@ const NoteCard = ({note, onDeleteHandler, onClickHandler}:{note:Note, onDeleteHa
             <CardTitle>{note.title}</CardTitle>
 
               <HtmlClamp html={note.content} />
-            <Button onClick={(e)=>{e.stopPropagation(); onDeleteHandler(note._id)}}>x</Button>
+            <DeleteButton onClick={(e)=>{e.stopPropagation(); onDeleteHandler(note._id)}}>delete</DeleteButton>
           </Card>
   );
 };
